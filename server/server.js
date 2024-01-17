@@ -1,8 +1,11 @@
 import express from "express"
 import viteExpress from "vite-express";
-
 import authCtrl from "./controllers/authCtrl.js"
 import clientCtrl from "./controllers/clientCtrl.js"
+
+import dotenv from "dotenv"
+dotenv.config()
+const { PORT } = process.env
 
 const app = express()
 
@@ -23,4 +26,4 @@ app.post("/user", addClientData);
 app.put("/user/:id", updateClientData);
 app.delete("/user/:id", deleteClientData);
 
-viteExpress.listen(app, 3000, () => console.log('Server listening on port 3000'));
+viteExpress.listen(app, PORT, () => console.log(`Server listening on port ${PORT}`));
